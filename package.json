@@ -1,0 +1,25 @@
+{
+  "name": "Maverick",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "nlp_compromise": "^6.5.3",
+    "react-scripts": "0.8.4",
+    "redux-devtools": "^3.3.1",
+    "stylus": "^0.54.5"
+  },
+  "dependencies": {
+    "node-wit": "^4.2.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^5.0.1",
+    "readline": "^1.3.0",
+    "redux": "^3.6.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
