@@ -1,5 +1,5 @@
 import React from 'react';
-import Immutable from 'immutable';
+// import Immutable from 'immutable';
 import ChatFeed from '../components/ChatFeed'
 export default class chatContainer extends React.Component {
 
