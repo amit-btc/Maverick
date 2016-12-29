@@ -26,7 +26,11 @@
   "main": "y",
   "repository": {
     "type": "git",
-    "url": "y"
+    "url": "https://github.com/Amit-Kolambikar/maverick"
+  },
+  "engines": {
+    "node": "4.2.6",
+     "npm": "3.5.2"
   },
   "keywords": [
     "ai",
