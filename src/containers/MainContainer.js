@@ -3,8 +3,9 @@ import ChatContainer from './ChatContainer';
 import nlp from 'nlp_compromise';
 import RepresentationContainer from './RepresentationContainer';
 import SampleInputsContainer from './sampleInputsContainer';
-import Client from '../helpers/InitializeWit'
-
+// Not using wit because cross-browser-requests -_- ; Also I dont want to render server side.
+// import Client from '../helpers/InitializeWit'
+import Client from '../helpers/InitializeRecast'
 
 export default class MainContainer extends React.Component {
   constructor() {
@@ -15,23 +16,40 @@ export default class MainContainer extends React.Component {
       nlpOutput: null
     }
     this.sessionId = Date.now().toString();
-
+    this.conversation_token = null;
+    this.memory = {};
   }
   getResponse() {
-    Client.runActions(this.sessionId, this.state.userInput, {})
-      .then((data) => {
-        console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
-        let botOutputObject = {
-          type: 'bot',
-          data: data.msg
-        };
-
-        this.setState({
-          messageThread: [...this.state.messageThread, botOutputObject],
-          nlpOutput: data.msg
-        })
-      })
-      .catch(console.error);
+    Client.converseRequest(this.state.userInput, {
+      conversationToken: this.conversation_token
+    })
+      .then(function(res) {
+        console.log(res);
+        this.conversation_token = res.conversation_token;
+        this.memory = {
+          ...res.memory
+        }
+        if (res.replies && res.replies.length > 0) {
+          res.replies.map((item) => {
+            let botOutputObject = {
+              type: 'bot',
+              data: item
+            };
+            this.setState({
+              messageThread: [...this.state.messageThread, botOutputObject],
+              nlpOutput: item
+            })
+          });
+        }
+      }.bind(this))
+  //   .end(function(err, res) {
+  //   if (res.action && res.action.done) {
+  //     // Do some things, like call an external API...
+  //   }
+  // })
+  // .end(function(err, res) {
+  //   console.log(res.replies[0])
+  // })
   }
   updateUserInput(value) {
     if (value !== this.state.userInput) {
