@@ -12,13 +12,25 @@ export default class ChatFeed extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.ChatBubbles = nextProps.messageThread.map((item, key) => {
       if (item.data) {
-        return (<div
-                     className={ "chat-bubble " + item.type }
-                     key={ key }>
-                  <div className="talktext">
-                    { item.data }
-                  </div>
-                </div>);
+        if (item.data.indexOf('http') != -1) {
+          return (<div
+                       className="clearfix"
+                       key={ key }>
+                    <img
+                         src={ item.data }
+                         alt={ key }
+                         key={ key }
+                         className="chat-gif-item" />
+                  </div>)
+        } else {
+          return (<div
+                       className={ "chat-bubble " + item.type }
+                       key={ key }>
+                    <div className="talktext">
+                      { item.data }
+                    </div>
+                  </div>);
+        }
       }
     });
   }

@@ -18,7 +18,8 @@ input,
   background: #fff;
   border-radius: 0;
   margin: 0 auto;
-  position: absolute;
+  z-index: 10;
+  position: relative;
   max-width: 960px;
   max-width: 70vw;
   top: 5em;
@@ -51,6 +52,7 @@ input,
   position: absolute;
   left: 0;
   right: 0;
+  z-index: -1;
   top: 0;
   height: 300px;
 }
@@ -66,6 +68,53 @@ input,
 .mdl-button--primary.mdl-button--primary.mdl-button--raised,
 .mdl-button--primary.mdl-button--primary.mdl-button--fab {
   background-color: #1976d2;
+}
+.demo-card-square.mdl-card {
+  height: 265px;
+}
+.demo-card-square .mdl-card__title {
+  z-index: -1;
+  position: relative;
+  color: #fff;
+  background: url("./user.jpg") center 15% no-repeat #46b6ac;
+  background-size: cover;
+}
+.demo-card-square .mdl-card__title:after {
+  position: absolute;
+  background: rgba(51,51,51,0.8);
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.demo-card-square .mdl-card__title h2 {
+  z-index: 1;
+}
+.demo-card-square .mdl-card__title.weather {
+  background: url("./weather.png") #46b6ac;
+}
+.demo-card-square .mdl-card__title.maverick {
+  background: url("./weather.png") #46b6ac;
+  background-size: contain;
+  background-position: center;
+}
+.demo-card-square .mdl-card__title.cats {
+  background: url("./cats.gif") #46b6ac;
+  background-size: contain;
+  background-position: center;
+}
+.demo-card-square .mdl-card__title.dogs {
+  background: url("./dogs.jpg") #46b6ac;
+  background-size: contain;
+  background-position: center;
+}
+.rep-heading {
+  padding-left: 16px;
+  margin: 8px 0;
+}
+.chat-heading-title {
+  margin-top: 8px;
 }
 .main-grid {
   height: 75%;
@@ -120,4 +169,29 @@ input,
   right: -45px;
   top: 1px;
   background-size: contain;
+}
+.sample-input-block {
+  margin: 0 2em;
+}
+.sample-item {
+  cursor: pointer;
+  font-size: 1em !important;
+  margin-right: 2em;
+  margin-bottom: 1em;
+}
+.sample-item .mdl-chip__text {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1em !important;
+}
+.chat-gif-item {
+  width: 250px;
+  height: 200px;
+  float: right;
+}
+.sample-input-heading {
+  margin-left: 35px !important;
+}
+.sample-input-block {
+  min-height: 120px !important;
 }
