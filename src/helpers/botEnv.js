@@ -47,8 +47,38 @@ const switchEnvironment = (value) => {
   }
   return config;
 }
+var option = {
+  language: 'en', /* 'en' or 'fr' */
+  debug: true, /*will add console log at the end of some function */
+  conversationToken: '', /*Conversation token*/
+}
+var constants = {
+  REQUEST_ENDPOINT: 'https://api.recast.ai/v2/request',
+  CONVERSE_ENDPOINT: 'https://api.recast.ai/v2/converse',
+  WS_ENDPOINT: 'wss://api.recast.ai/v2/request',
+
+  ACT_ASSERT: 'assert',
+  ACT_COMMAND: 'command',
+  ACT_WH_QUERY: 'wh-query',
+  ACT_YN_QUERY: 'yn-query',
+
+  TYPE_ABBREVIATION: 'abbr:',
+  TYPE_ENTITY: 'enty:',
+  TYPE_DESCRIPTION: 'desc:',
+  TYPE_HUMAN: 'hum:',
+  TYPE_LOCATION: 'loc:',
+  TYPE_NUMBER: 'num:',
+
+  SENTIMENT_VERY_POSITIVE: 'vpositive',
+  SENTIMENT_POSITIVE: 'positive',
+  SENTIMENT_NEUTRAL: 'neutral',
+  SENTIMENT_NEGATIVE: 'negative',
+  SENTIMENT_VERY_NEGATIVE: 'vnegative'
+}
 var defaultConfig = switchEnvironment('maverick');
 export { config as Config };
 export { switchEnvironment as switchEnvironment };
 export { allConfig as allConfig };
 export { defaultConfig as defaultConfig };
+export { option as option };
+export { constants as constants };
