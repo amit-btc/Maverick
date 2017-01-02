@@ -21,6 +21,7 @@ export default class ChatFeed extends React.Component {
                          alt={ key }
                          key={ key }
                          className="chat-gif-item" />
+                    <div id="temp"></div>
                   </div>)
         } else {
           return (<div
@@ -29,10 +30,14 @@ export default class ChatFeed extends React.Component {
                     <div className="talktext">
                       { item.data }
                     </div>
+                    <div id="temp"></div>
                   </div>);
         }
       }
     });
+  }
+  componentDidUpdate() {
+    document.querySelector('.chat-box').scrollTop = 10000
   }
   render() {
     return (
