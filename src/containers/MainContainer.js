@@ -97,7 +97,29 @@ export default class MainContainer extends React.Component {
             })
           });
         }
-      }.bind(this))
+        if (Object.keys(res.memory).length > 0 && Object.keys(res.memory)[0] == 'location') {
+          let location = res.memory['location'].raw;
+          fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=07d11b7d2f0b3b1bc552168515dd9016', {
+            method: 'GET'
+          }).then(function(response) {
+            return response.json();
+          }).then(function(j) {
+            // Yay, `j` is a JavaScript object
+            console.log(j);
+            let weatherOutput = "";
+            for (var i in j.main) {
+              weatherOutput += i + " : " + j.main[i] + "\n"
+            }
+            weatherOutput = JSON.parse(JSON.stringify(weatherOutput))
+            this.setState({
+              messageThread: [...this.state.messageThread, {
+                type: 'bot',
+                data: weatherOutput
+              }],
+            })
+          }.bind(this));
+        }
+      }.bind(this));
   }
   updateUserInput(value) {
     let userInputObject = {

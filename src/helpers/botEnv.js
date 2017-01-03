@@ -25,7 +25,7 @@ var allConfig = {
     token: '6e183c3bdc01643e0ea1552b63a122b8',
     value: 'dogs',
     heading: 'Dogs',
-    sampleInput: ["Woof", "gif"],
+    sampleInput: ["gif"],
     description: 'Bork and gifs!'
   }
 
