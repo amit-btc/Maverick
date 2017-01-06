@@ -27,6 +27,14 @@ export default class MainContainer extends React.Component {
     this.memory = {};
     this.client = new Client(token, option);
   }
+  componentDidMount() {
+    setTimeout(() => (this.setState({
+      messageThread: [{
+        type: 'bot',
+        data: "Hi there!"
+      }]
+    })), 1500);
+  }
   setMemory(memory) {
 
     const agent = require('superagent-promise')(require('superagent'), Promise);
@@ -97,9 +105,13 @@ export default class MainContainer extends React.Component {
             })
           });
         }
-        if (Object.keys(res.memory).length > 0 && Object.keys(res.memory)[0] == 'location') {
+        if (Object.keys(res.memory).length > 0 && Object.keys(res.memory).indexOf('location') !== -1) {
           let location = res.memory['location'].raw;
-          fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=07d11b7d2f0b3b1bc552168515dd9016', {
+          let lat = res.memory['location'].lat;
+          let lng = res.memory['location'].lng;
+          // dark sky api https://api.darksky.net/forecast/59216fdafc8e6d49731b45bedb915740/37.8267,-122.4233
+          // open weather api 'http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=07d11b7d2f0b3b1bc552168515dd9016&units=metric'
+          fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=07d11b7d2f0b3b1bc552168515dd9016&units=metric', {
             method: 'GET'
           }).then(function(response) {
             return response.json();
@@ -108,9 +120,10 @@ export default class MainContainer extends React.Component {
             console.log(j);
             let weatherOutput = "";
             for (var i in j.main) {
-              weatherOutput += i + " : " + j.main[i] + "\n"
+              weatherOutput += i + " : " + j.main[i] + "<br/>"
             }
-            weatherOutput = JSON.parse(JSON.stringify(weatherOutput))
+            weatherOutput = weatherOutput + "Degree Celcius wherever applicable."
+            // weatherOutput = JSON.parse(JSON.stringify(weatherOutput))
             this.setState({
               messageThread: [...this.state.messageThread, {
                 type: 'bot',

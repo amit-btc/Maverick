@@ -11,7 +11,7 @@ var allConfig = {
     token: 'c63577f259945a707d98337b586c5822',
     value: 'maverick',
     heading: 'Maverick',
-    sampleInput: ["How's the weather in Chicago ?", "Weather London ?"],
+    sampleInput: ["How's the weather in Chicago ?", "Weather in Mumbai ?", "What's the weather trend in Singapore?", "What is the weather in Bangalore today?"],
     description: 'Supports various weather and forecast requests.'
   },
   'star-wars': {
@@ -25,7 +25,7 @@ var allConfig = {
     token: '6e183c3bdc01643e0ea1552b63a122b8',
     value: 'dogs',
     heading: 'Dogs',
-    sampleInput: ["gif"],
+    sampleInput: ["Woof", "gif"],
     description: 'Bork and gifs!'
   }
 

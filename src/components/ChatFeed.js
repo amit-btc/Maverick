@@ -27,8 +27,9 @@ export default class ChatFeed extends React.Component {
           return (<div
                        className={ "chat-bubble " + item.type }
                        key={ key }>
-                    <div className="talktext">
-                      { item.data }
+                    <div
+                         className="talktext"
+                         dangerouslySetInnerHTML={ { __html: item.data } }>
                     </div>
                     <div id="temp"></div>
                   </div>);

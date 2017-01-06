@@ -43,7 +43,7 @@ export default class chatContainer extends React.Component {
             <label
                    className="mdl-textfield__label"
                    htmlFor="userinput">
-              Orders, Captain ?
+              Type text here...
             </label>
           </div>
           <button
